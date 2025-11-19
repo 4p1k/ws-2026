@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: gray;
+            
+        }
+        a{
+            text-decoration: none;
+            color:white
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            border: 2px solid black;
+        }
+        nav .right a{
+            margin-left: 10px;
+        }
+        main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contest{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .slider{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .slide{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        .slider .arrow{
+            height: 30px;
+        }
+        .left img{
+            width:450px;
+        }
+
+        @media(max-width:768px){
+            .left img{
+            width:100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <h5 style="color: white;">Моя семья - мой космос</h5>
+            </div>
+            <div class="right">
+                <a href="# ">Регистрация</a>
+                <a href="# ">Авторизация</a>
+                <a href="#">Личный кабинет</a>
+                <a href="#">О нас</a>
+                <a href="# ">Конкурсы</a>
+                <a href="#">Поиск</a>
+                <a href="#">Контакты</a>
+                <a href="index-light.html">Светлая тема</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="contest" id="#contest">
+            <h1>Мероприятия</h1>
+            <div class="slider">
+                <a href="#"> 
+                    <img src="img/left.svg"  class="arrow">
+                </a>
+                <div class="slide" id="0">
+                    <div class="left">
+                        <img src="img/slider-1.png" alt="альт">
+                    </div>
+                    <div class="rigth" style="display: flex; flex-direction: column; align-items: center;">
+                            <p>Создайте семейный портрет в космической стилистике и поделитесь
+                                своей галактикой эмоций.</p>
+                    <button style="border: none; width: 100px;height: 50px; border-radius: 55px;">Подробнее</button>
+                    </div>
+                </div>
+                <a href="#">
+                    <img src="img/right.svg" class="arrow">
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
