@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание конкурсов - Моя семья - мой космос</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d2d2d;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            border: 2px solid black;
+            background-color: #2d2d2d;
+            padding: 0 20px;
+            width: 100%;
+        }
+        nav .right a{
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        nav .right a:hover {
+            color: #4dabf7;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+        
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #3a3a3a;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid #555;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        th {
+            background-color: #4a4a4a;
+            position: sticky;
+            top: 0;
+        }
+        
+        .time-slot {
+            background-color: #4a4a4a;
+            font-weight: bold;
+        }
+        
+        .competition-name {
+            text-align: left;
+            background-color: #4a4a4a;
+            font-weight: bold;
+            white-space: nowrap;
+            position: sticky;
+            left: 0;
+        }
+        
+        .slot-cell {
+            width: 60px;
+            height: 60px;
+            background-color: #2e7d32;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .slot-cell:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        .slot-full {
+            background-color: #c62828;
+        }
+        
+        .slot-low {
+            background-color: #ef6c00;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+        
+        .legend-free {
+            background-color: #2e7d32;
+        }
+        
+        .legend-low {
+            background-color: #ef6c00;
+        }
+        
+        .legend-full {
+            background-color: #c62828;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+            
+            nav .right {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav .right a {
+                margin: 5px;
+            }
+            
+            .slot-cell {
+                width: 45px;
+                height: 45px;
+                font-size: 0.8em;
+            }
+            
+            .competition-name {
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slot-cell {
+                width: 35px;
+                height: 35px;
+                font-size: 0.7em;
+            }
+            
+            .competition-name {
+                font-size: 0.8em;
+                max-width: 120px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            th {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <a href="index.html">  
+                    <h5 style="color: white;">Моя семья - мой космос</h5>
+                </a>
+            </div>
+            <div class="right">
+                <a href="registration.html">Регистрация</a>
+                <a href="index.html#auth">Авторизация</a>
+                <a href="profile.html">Личный кабинет</a>
+                <a href="#about">О нас</a>
+                <a href="#competitions">Конкурсы</a>
+                <a href="#search">Поиск</a>
+                <a href="#contacts">Контакты</a>
+                <a href="index-light.html">Светлая тема</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Расписание конкурсов</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color legend-free"></div>
+                <span>Есть свободные места</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-low"></div>
+                <span>Мало свободных мест</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-full"></div>
+                <span>Регистрация завершена</span>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="schedule-table">
+                <thead>
+                    <tr>
+                        <th class="competition-name">Конкурс</th>
+                        <!-- Временные слоты будут добавлены через JavaScript -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Строки с конкурсами будут добавлены через JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Список конкурсов (в реальном проекте будет загружаться из файла)
+        const competitions = [
+            "Рисунок на тему космоса",
+            "Семейная фотография",
+            "Космический костюм",
+            "Семейная история",
+            "Космическая поделка",
+            "Семейная песня",
+            "Космический танец",
+            "Семейный рецепт",
+            "Космический рассказ",
+            "Семейное видео",
+            "Космическая головоломка",
+            "Семейная игра",
+            "Космический эксперимент",
+            "Семейный проект",
+            "Космический плакат"
+        ];
+        
+        // Временные слоты с 9 до 21 часа
+        const timeSlots = [];
+        for (let i = 9; i <= 21; i++) {
+            timeSlots.push(`${i}:00 - ${i+1}:00`);
+        }
+        
+        // Функция для генерации случайного количества мест (0-10)
+        function getRandomSlots() {
+            return Math.floor(Math.random() * 11);
+        }
+        
+        // Создание таблицы
+        function createScheduleTable() {
+            const table = document.getElementById('schedule-table');
+            const thead = table.querySelector('thead tr');
+            const tbody = table.querySelector('tbody');
+            
+            // Добавление заголовков временных слотов
+            timeSlots.forEach(slot => {
+                const th = document.createElement('th');
+                th.textContent = slot;
+                th.className = 'time-slot';
+                thead.appendChild(th);
+            });
+            
+            // Добавление строк с конкурсами
+            competitions.forEach(competition => {
+                const tr = document.createElement('tr');
+                
+                // Название конкурса
+                const nameTd = document.createElement('td');
+                nameTd.textContent = competition;
+                nameTd.className = 'competition-name';
+                tr.appendChild(nameTd);
+                
+                // Ячейки с количеством мест для каждого временного слота
+                timeSlots.forEach(() => {
+                    const td = document.createElement('td');
+                    const slots = getRandomSlots();
+                    const slotCell = document.createElement('div');
+                    slotCell.className = 'slot-cell';
+                    slotCell.textContent = slots;
+                    
+                    // Определение стиля в зависимости от количества мест
+                    if (slots === 0) {
+                        slotCell.classList.add('slot-full');
+                    } else if (slots <= 3) {
+                        slotCell.classList.add('slot-low');
+                    }
+                    
+                    td.appendChild(slotCell);
+                    tr.appendChild(td);
+                });
+                
+                tbody.appendChild(tr);
+            });
+        }
+        
+        // Инициализация таблицы при загрузке страницы
+        document.addEventListener('DOMContentLoaded', createScheduleTable);
+    </script>
+</body>
+</html>

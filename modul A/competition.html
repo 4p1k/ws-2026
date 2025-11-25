@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конкурс "Рисунок на тему космоса" - Моя семья - мой космос</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d2d2d;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            border: 2px solid black;
+            background-color: #2d2d2d;
+            padding: 0 20px;
+            width: 100%;
+        }
+        nav .right a{
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        nav .right a:hover {
+            color: #4dabf7;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .competition-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .competition-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #4dabf7;
+        }
+        
+        .competition-image {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .competition-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 25px 0;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+        
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        .star {
+            color: #ffc107;
+            font-size: 1.5em;
+        }
+        
+        .participants-count {
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+        
+        .competition-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .description-section, .rules-section, .prizes-section {
+            background-color: #3a3a3a;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #4dabf7;
+            border-bottom: 1px solid #555;
+            padding-bottom: 8px;
+        }
+        
+        .description-text {
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .rules-list, .prizes-list {
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .rules-list li, .prizes-list li {
+            margin-bottom: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .register-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .register-btn:hover {
+            background-color: #388e3c;
+        }
+        
+        .share-btn {
+            background-color: #2196f3;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            background-color: #1976d2;
+        }
+        
+        /* Стили для печати */
+        @media print {
+            nav, .action-buttons, .competition-stats {
+                display: none !important;
+            }
+            
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            
+            .competition-title {
+                color: black !important;
+                font-size: 2em !important;
+                text-align: center !important;
+            }
+            
+            .competition-image {
+                filter: grayscale(100%) !important;
+                max-width: 80% !important;
+                height: auto !important;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            
+            .description-section, .rules-section, .prizes-section {
+                background-color: white !important;
+                color: black !important;
+                padding: 15px !important;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+            
+            .section-title {
+                color: black !important;
+                border-bottom: 1px solid #aaa !important;
+            }
+            
+            .review-section {
+                display: block !important;
+                margin-top: 30px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                background-color: #f9f9f9;
+            }
+            
+            .review-title {
+                font-size: 1.3em;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            
+            .review-text {
+                font-style: italic;
+                line-height: 1.5;
+            }
+            
+            .review-author {
+                margin-top: 10px;
+                text-align: right;
+                font-weight: bold;
+            }
+        }
+        
+        /* Скрываем блок с отзывом при обычном просмотре */
+        .review-section {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+            
+            nav .right {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav .right a {
+                margin: 5px;
+            }
+            
+            .competition-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <a href="index.html">  
+                    <h5 style="color: white;">Моя семья - мой космос</h5>
+                </a>
+            </div>
+            <div class="right">
+                <a href="registration.html">Регистрация</a>
+                <a href="index.html#auth">Авторизация</a>
+                <a href="profile.html">Личный кабинет</a>
+                <a href="#about">О нас</a>
+                <a href="schedule.html">Конкурсы</a>
+                <a href="#search">Поиск</a>
+                <a href="#contacts">Контакты</a>
+                <a href="index-light.html">Светлая тема</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="competition-header">
+            <h1 class="competition-title">Рисунок на тему космоса</h1>
+            <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Рисунок на тему космоса" class="competition-image">
+            
+            <div class="competition-stats">
+                <div class="stat-item">
+                    <div class="stat-value">4.7</div>
+                    <div class="stat-label">Рейтинг</div>
+                    <div class="rating-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value participants-count">127</div>
+                    <div class="stat-label">Участников</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="competition-content">
+            <div class="description-section">
+                <h2 class="section-title">О конкурсе</h2>
+                <p class="description-text">
+                    Приглашаем детей и их родителей принять участие в конкурсе рисунков на космическую тему! 
+                    Дайте волю своему воображению и создайте уникальные произведения, отражающие ваше видение 
+                    космоса, звезд, планет и межгалактических путешествий.
+                </p>
+                <p class="description-text">
+                    Конкурс проводится с целью развития творческих способностей детей, укрепления семейных 
+                    связей через совместное творчество и популяризации знаний о космосе среди подрастающего 
+                    поколения.
+                </p>
+            </div>
+            
+            <div class="rules-section">
+                <h2 class="section-title">Правила участия</h2>
+                <ul class="rules-list">
+                    <li>В конкурсе могут участвовать дети от 5 до 14 лет вместе с родителями</li>
+                    <li>Рисунок должен быть выполнен на бумаге формата А3 или А4</li>
+                    <li>Допускается использование любых материалов: карандаши, краски, фломастеры, пастель</li>
+                    <li>Работа должна быть оригинальной, созданной специально для этого конкурса</li>
+                    <li>Каждая семья может представить не более 2 работ</li>
+                    <li>Работы принимаются до 5 июля 2024 года включительно</li>
+                </ul>
+            </div>
+            
+            <div class="prizes-section">
+                <h2 class="section-title">Призы</h2>
+                <ul class="prizes-list">
+                    <li>1 место: Набор профессиональных художественных материалов и семейная экскурсия в планетарий</li>
+                    <li>2 место: Подарочный сертификат в художественный магазин и книги о космосе</li>
+                    <li>3 место: Набор для творчества и диплом участника</li>
+                    <li>Все участники получат памятные дипломы</li>
+                </ul>
+            </div>
+            
+            <!-- Блок с отзывом, который появляется только при печати -->
+            <div class="review-section">
+                <h3 class="review-title">Отзыв участника:</h3>
+                <p class="review-text">
+                    "Наш сын впервые участвовал в таком масштабном конкурсе. Он с большим энтузиазмом 
+                    работал над рисунком, изучал планеты солнечной системы, придумывал сюжет. Спасибо 
+                    организаторам за прекрасную возможность раскрыть творческий потенциал ребенка и 
+                    провести время вместе за интересным занятием!"
+                </p>
+                <p class="review-author">- Семья Ивановых, участники конкурса 2023</p>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="registration.html" class="btn register-btn">Записаться на конкурс</a>
+            <a href="#" class="btn share-btn" onclick="alert('Скопируйте ссылку и поделитесь с друзьями!')">Поделиться с друзьями</a>
+        </div>
+    </div>
+</body>
+</html>

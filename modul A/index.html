@@ -1,109 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body{
-            background-color: gray;
-            
-        }
-        a{
-            text-decoration: none;
-            color:white
-        }
-        nav{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            height: 50px;
-            border: 2px solid black;
-        }
-        nav .right a{
-            margin-left: 10px;
-        }
-        main{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .contest{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .slider{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .slide{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-        }
-        .slider .arrow{
-            height: 30px;
-        }
-        .left img{
-            width:450px;
-        }
-
-        @media(max-width:768px){
-            .left img{
-            width:100%;
-            }
-        }
-    </style>
+    <title>Моя семья - мой космос</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <nav>
             <div class="left">
-                <h5 style="color: white;">Моя семья - мой космос</h5>
+                <!-- Логотип нужно будет добавить -->
+                <a href="index.html">  
+                    <h5 style="color: white;">Моя семья - мой космос</h5>
+                </a>
             </div>
             <div class="right">
-                <a href="# ">Регистрация</a>
-                <a href="# ">Авторизация</a>
-                <a href="#">Личный кабинет</a>
-                <a href="#">О нас</a>
-                <a href="# ">Конкурсы</a>
-                <a href="#">Поиск</a>
-                <a href="#">Контакты</a>
+                <a href="registration.html">Регистрация</a>
+                <a href="#auth">Авторизация</a>
+                <a href="account.html">Личный кабинет</a>
+                <a href="#about">О нас</a>
+                <a href="schedule.html">Конкурсы</a>
+                <a href="#search">Поиск</a>
+                <a href="#contacts">Контакты</a>
                 <a href="index-light.html">Светлая тема</a>
             </div>
         </nav>
     </header>
+    
     <main>
-        <section class="contest" id="#contest">
-            <h1>Мероприятия</h1>
+        <!-- Секция популярных конкурсов (слайдер) -->
+        <section class="contest" id="contest">
+            <h1>Популярные конкурсы</h1>
             <div class="slider">
-                <a href="#"> 
-                    <img src="img/left.svg"  class="arrow">
-                </a>
-                <div class="slide" id="0">
-                    <div class="left">
-                        <img src="img/slider-1.png" alt="альт">
-                    </div>
-                    <div class="rigth" style="display: flex; flex-direction: column; align-items: center;">
-                            <p>Создайте семейный портрет в космической стилистике и поделитесь
-                                своей галактикой эмоций.</p>
-                    <button style="border: none; width: 100px;height: 50px; border-radius: 55px;">Подробнее</button>
+                <button class="arrow prev">
+                    <img src="img/left.svg" alt="Предыдущий">
+                </button>
+                
+                <div class="slide active" id="slide-1">
+                    <div class="slide-content">
+                        <div class="image-container">
+                            <img src="img/slider-1.png" alt="Семейный портрет в космосе">
+                        </div>
+                        <div class="slide-info">
+                            <h3>Космический семейный портрет</h3>
+                            <p>Создайте семейный портрет в космической стилистике и поделитесь своей галактикой эмоций.</p>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="rating-value">5.0</span>
+                            </div>
+                            <button class="details-btn">Подробнее</button>
+                        </div>
                     </div>
                 </div>
-                <a href="#">
-                    <img src="img/right.svg" class="arrow">
-                </a>
+                
+                <button class="arrow next">
+                    <img src="img/right.svg" alt="Следующий">
+                </button>
+            </div>
+            <div class="slider-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
             </div>
         </section>
+
+        <!-- Секция авторизации -->
+        <section class="auth" id="auth" style="display: flex;flex-direction: column; align-items: center;">
+            <h1>Авторизация</h1>
+            <form action="#" method="#">
+                <div class="form-group">
+                    <label for="email">Введите почту</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Введите пароль</label>
+                    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+                </div>
+                <a href="#" class="forgot-password">Забыли пароль?</a>
+                <input type="submit" value="Войти" class="submit-btn">
+            </form>
+        </section>
+
+        <!-- Секция "О нас" -->
+        <section class="about" id="about">
+            <h1>О нас</h1>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Проект "Моя семья - мой космос" создан для укрепления семейных ценностей и развития творческого потенциала каждой семьи. Мы верим, что каждая семья - это уникальная вселенная со своими традициями, историями и мечтами.</p>
+                    <p>Наша миссия - помочь семьям раскрыть свой творческий потенциал, укрепить взаимопонимание между поколениями и создать новые яркие воспоминания через участие в творческих конкурсах и мероприятиях.</p>
+                </div>
+                <div class="about-image">
+                    <img src="img/about.jpg" alt="О нашем проекте">
+                </div>
+            </div>
+        </section>
+
+        <!-- Приветствие от организаторов -->
+        <section class="greeting">
+            <h1>Приветствие от организаторов</h1>
+            <div class="video-container">
+                <video controls poster="img/video-poster.jpg">
+                    <source src="media/video/hello.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+        </section>
+
+        <!-- Секция конкурсов -->
+        <section class="competitions" id="competitions">
+            <h1>Конкурсы</h1>
+            <div class="competitions-grid">
+                <!-- Карточка конкурса 1 -->
+                <div class="competition-card">
+                    <img src="img/competition1.jpg" alt="Семейная галактика творчества">
+                    <h3>Семейная галактика творчества</h3>
+                    <p>Создайте совместную творческую работу, отражающую вашу семейную историю.</p>
+                    <div class="card-info">
+                        <span class="participants">Участников: 156</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                    <button class="register-btn">Записаться</button>
+                </div>
+                
+                <!-- Карточка конкурса 2 -->
+                <div class="competition-card">
+                    <img src="img/competition2.jpg" alt="Космическая семейная история">
+                    <h3>Космическая семейная история</h3>
+                    <p>Расскажите уникальную историю вашей семьи в формате рассказа или видео.</p>
+                    <div class="card-info">
+                        <span class="participants">Участников: 89</span>
+                        <div class="rating">★★★★☆</div>
+                    </div>
+                    <button class="register-btn">Записаться</button>
+                </div>
+                
+                <!-- Остальные карточки конкурсов -->
+            </div>
+        </section>
+
+        <!-- Поиск конкурсов -->
+        <section class="search" id="search">
+            <h1>Поиск конкурсов</h1>
+            <div class="search-container">
+                <input type="text" placeholder="Введите название или описание конкурса..." list="competitions-list">
+                <datalist id="competitions-list">
+                    <option value="Семейная галактика творчества">
+                    <option value="Космическая семейная история">
+                    <option value="Звездный семейный талант">
+                    <option value="Орбита семейных традиций">
+                    <option value="Галактика поколений">
+                </datalist>
+                <button type="submit" class="search-btn">Поиск</button>
+            </div>
+        </section>
+
+        <!-- Секция отзывов -->
+        <section class="reviews">
+            <h1>Отзывы участников</h1>
+            <div class="reviews-slider">
+                <div class="review-card active">
+                    <div class="review-header">
+                        <img src="img/user1.jpg" alt="Мария Иванова" class="user-photo">
+                        <div class="user-info">
+                            <h4>Мария Иванова</h4>
+                            <span class="review-date">15.12.2023</span>
+                        </div>
+                    </div>
+                    <p class="review-text">"Участие в конкурсе сплотило нашу семью. Дети были в восторге от космической тематики!"</p>
+                    <a href="#" class="competition-link">Конкурс "Семейная галактика"</a>
+                </div>
+                
+                <!-- Другие отзывы -->
+            </div>
+        </section>
+
+        <!-- Форма подписки на новости -->
+        <section class="newsletter">
+            <h1>Подпишитесь на новости</h1>
+            <form class="subscription-form">
+                <div class="form-row">
+                    <input type="email" placeholder="Введите ваш email" required>
+                    <button type="submit" class="subscribe-btn">Подписаться</button>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree">Согласен на обработку персональных данных</label>
+                </div>
+            </form>
+        </section>
     </main>
+
+    <!-- Подвал сайта -->
+    <footer id="contacts">
+        <div class="footer-content">
+            <div class="contact-info">
+                <a href="tel:+74842234567" class="phone">+7 (4842) 23-45-67</a>
+                <a href="mailto:family@cosmos.ru" class="email">family@cosmos.ru</a>
+            </div>
+            
+            <nav class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="index-light.html">Главная-светлая</a>
+                <a href="registration.html">Регистрация</a>
+                <a href="competition.html">Конкурс</a>
+                <a href="profile.html">Личный кабинет</a>
+                <a href="404.html">Страница не найдена</a>
+            </nav>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Моя семья - мой космос. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

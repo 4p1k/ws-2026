@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Моя семья - мой космос</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d2d2d;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            border: 2px solid black;
+            background-color: #2d2d2d;
+            padding: 0 20px;
+            width: 100%;
+        }
+        nav .right a{
+            margin-left: 15px;
+            transition: color 0.3s;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        nav .right a:hover {
+            color: #4dabf7;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #555;
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 2em;
+        }
+        
+        .user-name {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            background-color: #c62828;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: #b71c1c;
+        }
+        
+        .booking-form {
+            background-color: #3a3a3a;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .form-title {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #2d2d2d;
+            color: white;
+            font-size: 1em;
+        }
+        
+        input[type="date"] {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        
+        .submit-btn {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1b5e20;
+        }
+        
+        .bookings-list {
+            background-color: #3a3a3a;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        
+        .bookings-title {
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #555;
+        }
+        
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .booking-info {
+            flex-grow: 1;
+        }
+        
+        .booking-competition {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .booking-details {
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        
+        .cancel-btn {
+            background-color: transparent;
+            color: #f44336;
+            border: 1px solid #f44336;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+            }
+            
+            nav .right {
+                margin-top: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav .right a {
+                margin: 5px;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info {
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .booking-form, .bookings-list {
+                padding: 15px;
+            }
+            
+            .booking-item {
+                flex-direction: column;
+            }
+            
+            .cancel-btn {
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <a href="index.html">  
+                    <h5 style="color: white;">Моя семья - мой космос</h5>
+                </a>
+            </div>
+            <div class="right">
+                <!-- Ссылка "Регистрация" отсутствует -->
+                <a href="index.html#auth">Авторизация</a>
+                <a href="profile.html" style="color: #4dabf7;">Личный кабинет</a>
+                <a href="#about">О нас</a>
+                <a href="schedule.html">Конкурсы</a>
+                <a href="#search">Поиск</a>
+                <a href="#contacts">Контакты</a>
+                <a href="index-light.html">Светлая тема</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <div class="avatar">👤</div>
+                <div>
+                    <div class="user-name">Иван Иванов</div>
+                    <div>Участник конкурсов</div>
+                </div>
+            </div>
+            <button class="logout-btn">Выйти из профиля</button>
+        </div>
+        
+        <div class="booking-form">
+            <h2 class="form-title">Запись на конкурс</h2>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="competition">Конкурс</label>
+                    <select id="competition" required>
+                        <option value="" disabled selected>Выберите конкурс</option>
+                        <option value="1">Рисунок на тему космоса</option>
+                        <option value="2">Семейная фотография</option>
+                        <option value="3">Космический костюм</option>
+                        <option value="4">Семейная история</option>
+                        <option value="5">Космическая поделка</option>
+                        <option value="6">Семейная песня</option>
+                        <option value="7">Космический танец</option>
+                        <option value="8">Семейный рецепт</option>
+                        <option value="9">Космический рассказ</option>
+                        <option value="10">Семейное видео</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Дата</label>
+                    <input type="date" id="date" value="2024-07-08" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="time">Время</label>
+                    <select id="time" required>
+                        <option value="" disabled selected>Выберите время</option>
+                        <option value="9">9:00 - 10:00</option>
+                        <option value="10">10:00 - 11:00</option>
+                        <option value="11">11:00 - 12:00</option>
+                        <option value="12">12:00 - 13:00</option>
+                        <option value="13">13:00 - 14:00</option>
+                        <option value="14">14:00 - 15:00</option>
+                        <option value="15">15:00 - 16:00</option>
+                        <option value="16">16:00 - 17:00</option>
+                        <option value="17">17:00 - 18:00</option>
+                        <option value="18">18:00 - 19:00</option>
+                        <option value="19">19:00 - 20:00</option>
+                        <option value="20">20:00 - 21:00</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="participants">Количество участников</label>
+                    <input type="number" id="participants" min="1" max="10" value="1" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Записаться на конкурс</button>
+            </form>
+        </div>
+        
+        <div class="bookings-list">
+            <h2 class="bookings-title">Мои записи</h2>
+            <div id="bookings-container">
+                <!-- Записи будут добавляться динамически -->
+                <div class="booking-item">
+                    <div class="booking-info">
+                        <div class="booking-competition">Рисунок на тему космоса</div>
+                        <div class="booking-details">8 июля 2024, 10:00 - 11:00, 2 участника</div>
+                    </div>
+                    <button class="cancel-btn">Отменить</button>
+                </div>
+                
+                <div class="booking-item">
+                    <div class="booking-info">
+                        <div class="booking-competition">Семейная фотография</div>
+                        <div class="booking-details">8 июля 2024, 14:00 - 15:00, 3 участника</div>
+                    </div>
+                    <button class="cancel-btn">Отменить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Обработка формы записи
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const competitionSelect = document.getElementById('competition');
+            const timeSelect = document.getElementById('time');
+            const participantsInput = document.getElementById('participants');
+            
+            const competitionText = competitionSelect.options[competitionSelect.selectedIndex].text;
+            const timeText = timeSelect.options[timeSelect.selectedIndex].text;
+            const participants = participantsInput.value;
+            
+            // Добавление новой записи в список
+            const bookingsContainer = document.getElementById('bookings-container');
+            const newBooking = document.createElement('div');
+            newBooking.className = 'booking-item';
+            newBooking.innerHTML = `
+                <div class="booking-info">
+                    <div class="booking-competition">${competitionText}</div>
+                    <div class="booking-details">8 июля 2024, ${timeText}, ${participants} участника</div>
+                </div>
+                <button class="cancel-btn">Отменить</button>
+            `;
+            
+            // Добавляем обработчик для кнопки отмены
+            newBooking.querySelector('.cancel-btn').addEventListener('click', function() {
+                newBooking.remove();
+            });
+            
+            bookingsContainer.prepend(newBooking);
+            
+            // Очистка формы
+            competitionSelect.selectedIndex = 0;
+            timeSelect.selectedIndex = 0;
+            participantsInput.value = 1;
+            
+            // Показываем уведомление об успешной записи
+            alert('Вы успешно записаны на конкурс!');
+        });
+        
+        // Обработка кнопок отмены существующих записей
+        document.querySelectorAll('.cancel-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.booking-item').remove();
+            });
+        });
+        
+        // Обработка кнопки выхода
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Вы уверены, что хотите выйти?')) {
+                // В реальном приложении здесь будет перенаправление на главную страницу
+                alert('Вы вышли из профиля');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

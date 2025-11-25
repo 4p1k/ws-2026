@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #2d2d2d;
+        }
+        nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    border: 2px solid black;
+    background-color: #2d2d2d;
+    padding: 0 20px;
+}
+
+nav .right a{
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        form input:not([type="submit"]){
+            margin:5px ;
+            padding:5px;
+            width: 250px;
+        }
+        form .input:not([type="submit"]){
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <!-- Логотип нужно будет добавить -->
+                 <a href="index.html">  
+                     <h5 style="color: white;">Моя семья - мой космос</h5>
+                 </a>
+            </div>
+            <div class="right">
+                <a href="registration.html">Регистрация</a>
+                <a href="index.html#auth">Авторизация</a>
+                <a href="account.html">Личный кабинет</a>
+                <a href="#about">О нас</a>
+                <a href="#competitions">Конкурсы</a>
+                <a href="#search">Поиск</a>
+                <a href="#contacts">Контакты</a>
+                <a href="index-light.html">Светлая тема</a>
+            </div>
+        </nav>
+    </header>
+    
+    <form action="#">
+        <div class="input">
+            <input type="email" placeholder="Ваша почта">
+        </div>
+        <div class="input">
+            <input type="text" placeholder="Ваше Имя">
+        </div>
+        <div class="input">
+            <input type="text" placeholder="Ваша Фамилия">
+        </div>
+        <div class="input">
+            <input type="date" placeholder="Дата рождения">
+        </div>
+        <div class="input">
+            <select name="sex" id="sex">
+                <option value="Man">Мужской</option>
+                <option value="female">Женский</option>
+            </select>
+        </div>
+        <div class="input">
+            <input type="password" placeholder="Пароль">
+        </div>
+        <div class="input">
+            <input type="password" placeholder="Повторите пароль">
+        </div>
+        <div class="input">
+            <input type="file" placeholder="Фото вашей семьи">
+        </div>
+        <div class="input" style="display: flex; flex-direction: column;align-items: center;">
+            <input type="submit" placeholder="Зарегестрироваться">
+        </div>
+
+    </form>
+</body>
+</html>
